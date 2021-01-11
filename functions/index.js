@@ -1,19 +1,21 @@
 const functions = require("firebase-functions");
-
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")(
-  'sk_test_51I7qqGELTkedJ0ac9xyiml7zx6CrSpjJFsVI8KPz7eMbdALsYm2tcv8FfXrJoSwzTLlVLgG76TSJEM43CFrAKVYj00K57vkN6O'
-);
+
+
+const str1 = "sk_test_51I7qqGELTkedJ0ac9xyiml7zx6C";
+const str2 = "rSpjJFsVI8KPz7eMbdALsYm2tcv8FfXrJoSwz";
+const str3 = "TLlVLgG76TSJEM43CFrAKVYj00K57vkN6O";
+
+const stripe = require("stripe")(str1 + str2 + str3);
 
 // API
 
-// APP CONFIG
-
+// - App config
 const app = express();
 
 // - Middlewares
-app.use(cors({ origin: true }));
+app.use(cors({origin: true}));
 app.use(express.json());
 
 // - API routes
@@ -37,3 +39,6 @@ app.post("/payments/create", async (request, response) => {
 
 // - Listen command
 exports.api = functions.https.onRequest(app);
+
+// Example endpoint
+// http://localhost:5001/challenge-4b2b2/us-central1/api
